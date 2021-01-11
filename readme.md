@@ -74,3 +74,20 @@ jfieldID GetStaticFieldID(JNIEnv *env, jclass cls, const char *name, const char 
 NativeType GetStatic<type>Field(JNIEnv *env, jclass clazz, jfieldID fieldID);
 void SetStatic<type>Field(JNIEnv *env, jclass clazz, jfieldID fieldID, NativeType value);
 ```
+
+### c调用java instance方法
+```cpp
+jmethodID GetMethodID(JNIEnv *env, jclass cls, const char *name, const char *sig);
+   // 返回instance/class 的MethodId
+NativeType Call<type>Method(JNIEnv *env, jobject obj, jmethodID methodID, ...);
+NativeType Call<type>MethodA(JNIEnv *env, jobject obj, jmethodID methodID, const jvalue *args);
+NativeType Call<type>MethodV(JNIEnv *env, jobject obj, jmethodID methodID, va_list args);
+   // 调用Method方法
+   // <type> includes each of the eight primitive and Object.
+   
+// static 方法
+jmethodID GetStaticMethodID(JNIEnv *env, jclass cls, const char *name, const char *sig);
+NativeType CallStatic<type>Method(JNIEnv *env, jclass clazz, jmethodID methodID, ...);
+NativeType CallStatic<type>MethodA(JNIEnv *env, jclass clazz, jmethodID methodID, const jvalue *args);
+NativeType CallStatic<type>MethodV(JNIEnv *env, jclass clazz, jmethodID methodID, va_list args);
+```
